@@ -21,7 +21,7 @@ SITE_ID = 1
 ADMIN_EMAIL = "pivolan@gmail.com"
 
 DOCS_EMAIL = 'beregchine@gmail.com'
-DOCS_PASS = 'chukamaka'
+DOCS_PASS = '**********'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
