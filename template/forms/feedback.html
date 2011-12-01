@@ -1,0 +1,45 @@
+{% load i18n %}
+{% load field_value %}
+<link rel="stylesheet" type="text/css" href="/public/css/forms/feedback.css"/>
+<div class="form feedback">
+	<form name="feedback" action="" method="post">
+		<div class="errrors">{{ form.non_field_errors }}</div>
+		<label for="company">Наименование организации</label>
+		<input id="company" name="{{ form.company.name }}" value="{{ form.company|field_value }}" type="text">
+
+		<label for="address">Адрес
+			<span class="required">*</span>
+		</label>
+		<span class="error">{{ form.address.errors }}</span>
+		<input id="address" name="{{ form.address.name }}" value="{{ form.address|field_value }}" type="text">
+
+		<label for="phone">Контактный телефон
+			<span class="required">*</span>
+		</label>
+		<span class="error">{{ form.phone.errors }}</span>
+		<input id="phone" name="{{ form.phone.name }}" value="{{ form.phone|field_value}}" type="text">
+
+		<label for="fio">Ваше Ф.И.О.</label>
+		<input id="fio" name="{{ form.fio.name }}" value="{{ form.fio|field_value }}" type="text">
+
+		<label for="email">Ваш e-mail
+			<span class="required">*</span>
+		</label>
+		<span class="error">{{ form.email.errors }}</span>
+		<input id="email" name="sdkfi" value="{{ form.email|field_value }}" type="text">
+
+		<label for="title">Тема
+			<span class="required">*</span>
+		</label>
+		<span class="error">{{ form.title.errors }}</span>
+		<input id="title" name="{{ form.title.name }}" value="{{ form.title|field_value }}" type="text">
+
+		<label for="text">Ваши пожелания</label>
+		<textarea id="text" name="text" rows="10" cols="50" wrap="on">{{ form.text|field_value }}</textarea>
+		<input name="act" value="add" type="hidden">
+		<input name="fromid" value="2" type="hidden">
+
+		<input class="send submit" value="Отправить" type="submit">
+	</form>
+</div>
+<script type="text/javascript" src="/public/js/forms/feedback.js"></script>

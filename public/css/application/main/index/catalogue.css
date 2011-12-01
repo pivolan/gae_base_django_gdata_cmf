@@ -1,0 +1,30 @@
+td.t-auth, td.t-post {
+	border-style: solid;
+	text-align: left;
+	white-space: normal;
+}
+
+div.main_content td {
+	text-indent: 10px;
+}
+
+p.short_text {
+	color: grey;
+	font-size: 11px;
+}
+
+td.t-auth {
+	border-left: medium none;
+	font-size: 70%;
+	text-align: center;
+}
+
+td.t-auth, td.t-post {
+	border-color: #FCFFFF #BEC2CA #9EA3AC #FCFFFF;
+	border-style: solid;
+	border-width: 1px;
+	padding: 4px;
+	text-align: left;
+	vertical-align: top;
+	white-space: normal;
+}
