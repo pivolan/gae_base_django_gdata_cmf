@@ -24,5 +24,6 @@ import datetime
 from datetime import timedelta
 import os
 
+@render_to("main/index.html")
 def index(request):
-	pass
+	return {}
