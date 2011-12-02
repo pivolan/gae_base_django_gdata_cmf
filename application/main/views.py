@@ -28,10 +28,28 @@ import os
 def index(request):
 	return {}
 
+
 @render_to("main/offer.html")
 def offer(request):
 	return {}
 
+
 @render_to("main/acts.html")
 def acts(request):
+	return {}
+
+@render_to("main/contacts.html")
+def contacts(request):
+	return {}
+
+@render_to("main/experience.html")
+def experience(request):
+	return {}
+
+@render_to("main/certification.html")
+def certification(request):
+	return {}
+
+@render_to("main/energy.html")
+def energy(request):
 	return {}
