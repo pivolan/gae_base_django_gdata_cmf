@@ -2809,3 +2809,10 @@ background-position: 0 0;
 width: 329px;
 height: 83px;
 }
+div.line{
+	padding-left: 10px;
+}
+div.line p{
+	text-indent: -10px;
+
+}

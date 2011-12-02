@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
 from google.appengine.api import images
+from django.conf import settings
 
 from pprint import pprint
 
@@ -31,44 +32,72 @@ import os
 
 class view: pass
 
-@render_to("main/index.html")
+
+@render_to("main/docs.html")
 def index(request):
 	return view.__dict__
 
 
-@render_to("main/offer.html")
+@render_to("main/docs.html")
 def offer(request):
-	return {}
+	return _get_doc('1r1jdCGX6OIxOlmECXCYgQ3A_dqKH6oUhAxLZA6IKMr8')
 
 
-@render_to("main/acts.html")
+@render_to("main/docs.html")
 def acts(request):
-	return {}
+	return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
 
-@render_to("main/contacts.html")
+
+@render_to("main/docs.html")
 def contacts(request):
-	return {}
+	return _get_doc('1pjbpq1rRig1Nwmn7gwoyWH1lqBk1JkOp39xHcqY32KI')
 
-@render_to("main/experience.html")
+
+@render_to("main/docs.html")
 def experience(request):
 	return {}
 
-@render_to("main/certification.html")
+
+@render_to("main/docs.html")
 def certification(request):
-	return {}
+	return _get_doc('1Uthw7v7VGbMRRYhYkdHoSIz76pTQuZJBhSuWR-yXXVE')
 
-@render_to("main/energy.html")
+
+@render_to("main/docs.html")
 def energy(request):
-	return {}
+	return _get_doc('1Yx0pbyKlCm6lBCoZ74OkESiz5UnWKsdzf3dryMqyA_8')
 
-def test(request):
-	client = gdata.docs.client.DocsClient(source='yourCo-yourAppName-v1')
-	client.ssl = True # Force all API requests through HTTPS
-	client.http_client.debug = True # Set to True for debugging HTTP requests
-	client.ClientLogin(settings.DOCS_EMAIL, settings.DOCS_PASS, client.source)
 
-	view.entry = client.GetFileContent('/feeds/download/documents/Export?id=1ebCRp9Q0_7bxNwtAZr4XYC2sGOdXk3ij6kEpmi-P64Y&format=html')
-	html = BeautifulStoneSoup(view.entry, convertEntities=BeautifulStoneSoup.HTML_ENTITIES)
-	view.body = html.body.renderContents()
-	view.style = html.style.prettify()
-	return view.__dict__
+def _get_doc(id):
+	if googleUser.is_current_user_admin():
+		memcache.delete(id)
+		
+	entry = memcache.get(id)
+	if not entry:
+		client = gdata.docs.client.DocsClient(source='yourCo-yourAppName-v1')
+		client.ssl = True # Force all API requests through HTTPS
+		client.http_client.debug = True # Set to True for debugging HTTP requests
+		client.ClientLogin(settings.DOCS_EMAIL, settings.DOCS_PASS, client.source)
+
+		entry = client.GetFileContent(
+			'/feeds/download/documents/Export?id=%s&format=html' % id)
+		memcache.add(id, entry)
+	html = BeautifulStoneSoup(entry, convertEntities=BeautifulStoneSoup.HTML_ENTITIES)
+	body = html.body.renderContents()
+	style = html.style.prettify()
+	return {
+		'entry': entry,
+		'title': html.head.title.text,
+		'html': html,
+		'body': body,
+		'style': style,
+		'id': id,
+		}
+
+
+def login(request):
+	return HttpResponseRedirect(redirect_to=googleUsers.create_login_url(request.META['HTTP_REFERER']))
+
+
+def logout(request):
+	return HttpResponseRedirect(redirect_to=googleUsers.create_logout_url(request.META['HTTP_REFERER']))

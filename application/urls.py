@@ -10,5 +10,8 @@ urlpatterns = patterns("",
 	(r"^energy$", "application.main.views.energy"),
 	(r"^experience$", "application.main.views.experience"),
 
+	(r"^login$", "application.main.views.login"),
+	(r"^logout$", "application.main.views.logout"),
+
 #	(r"^admin/", include("application.admin.urls")),
 )

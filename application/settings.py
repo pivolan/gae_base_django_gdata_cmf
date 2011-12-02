@@ -20,8 +20,8 @@ SITE_ID = 1
 
 ADMIN_EMAIL = "pivolan@gmail.com"
 
-DOCS_EMAIL = 'beregchine@gmail.com'
-DOCS_PASS = '**********'
+DOCS_EMAIL = 'pivolan@gmail.com'
+DOCS_PASS = 'treambarachegevara'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -45,7 +45,7 @@ ADMIN_MEDIA_PREFIX = '/media/'
 #AUTH_PROFILE_MODULE = 'main.Members'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '9wmgnb_kllshyum=@&w!_vz-^b6^m9f6(woat2f%a_%#mw77c@'
+SECRET_KEY = '9wmgnb_k*$#&trf#(*fssdfkjhsdf(*&$%)w'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (

@@ -1,0 +1,16 @@
+{% extends "layouts/archi.html" %}
+{% block add_css %}{{ style|safe }}{% endblock %}
+{% block title %}{{ title }}{% endblock  %}
+
+{% block body_title_with_url %}
+	<h2 class="art-postheader">
+		{{ title }}
+	</h2>
+{% endblock  %}
+
+{% block body_text %}
+	{% if is_admin %}
+		<p><a target="_blank" href="https://docs.google.com/document/d/{{ id }}/edit">редактировать</a></p>
+	{% endif %}
+	{{ body|safe }}
+{% endblock %}
