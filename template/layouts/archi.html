@@ -3,10 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de-de" lang="de-de">
 <head>
 	{% block header %}
-		<base href="http://www.joomla-templatedemo.de/"/>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-		<meta name="robots" content="index, follow"/>
-		<meta name="generator" content="Joomla! 1.7 - Open Source Content Management"/>
+		<meta content="{% block keywords %}{% endblock keywords %}" name="keywords">
+		<meta content="{% block description %}{% endblock description %}" name="description">
 		<title>
 			{% block title %}
 				О компании
@@ -14,11 +13,7 @@
 		</title>
 		<link href="" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
 
-		<link rel="stylesheet" type="text/css" href="/templates/architekt_v1/css/template.css" media="screen"/>
-		<!--[if IE 6]><link rel="stylesheet" href="/templates/architekt_v1/css/template.ie6.css" type="text/css" media="screen" />
-	<![endif]-->
-		<!--[if IE 7]><link rel="stylesheet" href="/templates/architekt_v1/css/template.ie7.css" type="text/css" media="screen" />
-	<![endif]-->
+		<link rel="stylesheet" type="text/css" href="/public/css/layout/archi/template.css" media="screen"/>
 	{% endblock header %}
 
 </head>
@@ -31,8 +26,7 @@
 	<div class="cleared reset-box"></div>
 	<div class="art-header">
 		<div class="logo">
-			<a href="/"><img src="/templates/architekt_v1/images/spacer.gif" width="1" height="1" border="0"
-							 id="logo"></a>
+			<a href="/"></a>
 		</div>
 		<div class="art-header-clip">
 
@@ -124,10 +118,8 @@
 										<div class="art-post-body">
 											<div class="art-post-inner">
 												{% block body_title_with_url %}
-
-													<h2 class="art-postheader"><a
-															href="/"
-															class="PostHeader">{{ title_text|default:"О компании" }}</a>
+													<h2 class="art-postheader">
+														{{ title_text|default:"О компании" }}
 													</h2>
 												{% endblock body_title_with_url %}
 
@@ -170,7 +162,7 @@
 
 								<div class="art-blockheader">
 									<h3 class="t">
-										Advertising</h3>
+										Реклама</h3>
 								</div>
 								<div class="art-blockcontent">
 									<div class="art-blockcontent-body">

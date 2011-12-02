@@ -27,3 +27,11 @@ import os
 @render_to("main/index.html")
 def index(request):
 	return {}
+
+@render_to("main/offer.html")
+def offer(request):
+	return {}
+
+@render_to("main/acts.html")
+def acts(request):
+	return {}
