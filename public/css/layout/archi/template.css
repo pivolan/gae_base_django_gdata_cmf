@@ -1435,7 +1435,7 @@ a img
 .art-article th, .art-article td
 {
   padding: 2px;
-  border: solid 0 #BABA5F;
+  border: dotted 1 #BABA5F;
   vertical-align: top;
   text-align: left;
 }
