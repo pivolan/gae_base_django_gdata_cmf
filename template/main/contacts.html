@@ -1,26 +1,14 @@
-{% extends 'layouts/archi.html' %}
-{% block title %}
-	Контакты
-{% endblock title %}
-{% block body_title_with_url %}
-	<h2 class="art-postheader">
-		Контакты
-	</h2>
-{% endblock body_title_with_url %}
+{% extends "main/docs.html" %}
+{% block add_css %}
+
+{% endblock %}
 {% block body_text %}
-	<p><b>Общество с ограниченной ответственностью «АудитЭнергоСтрой»</b></p>
-	<p><b>Телефон/факс</b> (3412) 551-211 / 558 - 111</p>
-	<p><b>E-mail</b> <a href="mailto:AES18ru@gmail.com">AES18ru@gmail.com</a></p>
-	<p><b>Адрес</b>: Удмуртская Республика, г. Ижевск, ул. Воткинское Шоссе, д. 170, офис 216</p>
-	<p><b>Директор</b> Медведев Валерий Георгиевич</p>
-	<p><b>Финансовые Реквизиты:</b></p>
-	<p>ООО «АудитЭнергоСтрой»</p>
-	<p>ИНН 1840002848; КПП 184001001; ОГРН 1111840012162;</p>
-	<p>Юр. адрес: 426000, УР, г. Ижевск, ул. Районная, 57;</p>
-	<p>Фак. адрес: 426039, УР, г. Ижевск, ул. Воткинское Шоссе, д. 170, офис 216; Банк: Удмуртский РФ ОАО «Россельхозбанк»
-		г. Ижевск;
-	</p>
-	<p>БИК 049401710</p>
-	<p>К/с 30101810100000000710</p>
-	<p>Р/с 40702810328000001213</p>
-{% endblock body_text %}
+	{% if is_admin %}
+		<p><a target="_blank" href="https://docs.google.com/document/d/{{ id }}/edit">редактировать</a></p>
+	{% endif %}
+	{{ body|safe }}
+	<div class="form_feedback">
+		<h3>Форма обратной связи</h3>
+	{{ form.as_custom }}
+	</div>
+{% endblock %}

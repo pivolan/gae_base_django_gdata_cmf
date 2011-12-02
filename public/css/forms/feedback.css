@@ -1,4 +1,4 @@
-div.errors, .error {
+div.errors, .error, .art-post .error li{
 	color: red;
 }
 

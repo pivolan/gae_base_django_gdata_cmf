@@ -1538,19 +1538,12 @@ h2.art-postheader a:hover,  h2.art-postheader a.hovered
 /* end PostIcons, PostHeaderIcons */
 
 /* begin PostBullets */
-.art-post ol, .art-post ul
-{
-  margin: 1em 0 1em 2em;
-  padding: 0;
-}
 
 .art-post li
 {
   font-size: 13px;
   text-align: left;
   color: #878787;
-  margin: 0 0 0 12px;
-  padding: 0 0 0 13px;
 }
 
 .art-post li ol, .art-post li ul
@@ -1565,14 +1558,6 @@ h2.art-postheader a:hover,  h2.art-postheader a.hovered
   padding-left: 0;
   /* overrides overflow for "ul li" and sets the default value */
   overflow: visible;
-}
-
-.art-post ul>li
-{
-  padding-left: 13px;
-  /* makes "ul li" not to align behind the image if they are in the same line */
-  overflow-x: visible;
-  overflow-y: hidden;
 }
 
 /* end PostBullets */

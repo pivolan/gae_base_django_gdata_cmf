@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.template import RequestContext
 from google.appengine.api import images
 from django.conf import settings
+from application.main.forms import feedback as feedback_form
 
 from pprint import pprint
 
@@ -35,7 +36,7 @@ class view: pass
 
 @render_to("main/docs.html")
 def index(request):
-	return view.__dict__
+	return _get_doc('1V-yTMB6nFsXjE7LYjM9RbSETExPG0IrPnnYAayOQdEI')
 
 
 @render_to("main/docs.html")
@@ -48,14 +49,36 @@ def acts(request):
 	return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
 
 
-@render_to("main/docs.html")
+@render_to("main/contacts.html")
 def contacts(request):
-	return _get_doc('1pjbpq1rRig1Nwmn7gwoyWH1lqBk1JkOp39xHcqY32KI')
+	result = _get_doc('1pjbpq1rRig1Nwmn7gwoyWH1lqBk1JkOp39xHcqY32KI')
+	if request.method == "POST":
+		form = feedback_form(request.POST)
+		if form.is_valid():
+			mail.send_mail(sender=form.cleaned_data['email'],
+			               to=settings.ADMIN_EMAIL,
+			               subject=form.cleaned_data['title'],
+			               body=form.cleaned_data['text'])
+			return HttpResponseRedirect('/contacts')
+	else:
+		initial_data = {}
+		if request.user:
+			user = request.user
+			initial_data = {
+				'company': user.company,
+				'address': user.address,
+				'phone': user.phone,
+				'fio': user.fio,
+				'email': user.email(),
+				}
+		form = feedback_form(initial=initial_data)
+	result['form'] = form
+	return result
 
 
 @render_to("main/docs.html")
 def experience(request):
-	return {}
+	return _get_doc('19miGFML3p4KCgPWb_uUr12atBch5UoaZZ9KhPNOs3_o')
 
 
 @render_to("main/docs.html")
