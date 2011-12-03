@@ -33,6 +33,17 @@ import os
 
 class view: pass
 
+acts = [
+	'',
+	'1mFb0Jyvk3S56r_yneMWuGkG3ygpPLOVruN5gNPa_PVE',
+  '1wDzyAjpJUpeKNyNaUn_kn4olYuT4OxHPoMgUpEYgciY',
+  '1nHO5R2c8AYYr0zfr4SqggfzafiVxfMx2-6LJAKqA-xE',
+  '1mZlvsom4FjxLKghLoV0hBy7uVvjMs9NoZlKa7C-34eo',
+  '15g6msiv7uW2MZBcPdCaECiroDoxl6w1Lue-8YChzNsE',
+  '1j0R0btcP7HULBINba1QVm1-i0fMNWvazn5C7f0fDQ9c',
+  '1P9kltGeAVzL-PAgM4J4yKkUBSPr_zqw__Ki0uhhaLH4',
+  '1yPg7PgbuTufUizfB7kB6MJs5pr9D2UXtSLz56_R_Zvk',
+]
 
 @render_to("main/docs.html")
 def index(request):
@@ -44,9 +55,13 @@ def offer(request):
 	return _get_doc('1r1jdCGX6OIxOlmECXCYgQ3A_dqKH6oUhAxLZA6IKMr8')
 
 
-@render_to("main/docs.html")
+@render_to("main/docs.html", id = None)
 def acts(request):
-	return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
+	if id and id in acts:
+		return _get_doc(acts[id])
+	else:
+		return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
+
 
 
 @render_to("main/contacts.html")
