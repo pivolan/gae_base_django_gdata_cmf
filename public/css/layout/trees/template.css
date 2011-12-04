@@ -1,0 +1,166 @@
+@charset "utf-8";
+
+/*
+author: Fjodinho http://www.ueberkrass.de
+copyright: GNU/GPL
+Der Link im Footer des Templates darf nicht so ohne weiteres entfernt oder unkenntlich gemacht werden. Eine Entfernung des Links ist aber gegen eine kleine Gebühr möglich.
+*/
+
+body{
+	background-image: url(/public/img/layout/trees/bg.jpg);
+	margin: 0px;
+	padding: 0px;
+	background-color: #517082;
+	background-repeat: repeat-x;
+}
+#marginauto {
+	text-align: center;
+}
+#container {
+	margin: 0px auto;
+	padding: 0px;
+	width: 822px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-align: left;
+}
+#left {
+	float: left;
+	width: 202px;
+	color: #000;
+	padding: 0px;
+	margin: 0px;
+}
+#logo {
+	height: 127px;
+	background: url(/public/img/layout/trees/logo.png) no-repeat 50px 50px;
+}
+#leftspace {
+	background-image: url(/public/img/layout/trees/leftcontent.png);
+	background-repeat: repeat-y;
+	width: 202px;
+	display: block;
+}
+#lefttop  {
+	background-image: url(/public/img/layout/trees/lefttop.png);
+	background-repeat: no-repeat;
+	width: 202px;
+	background-position: top;
+}
+
+
+#leftcontent {
+	width: 170px;
+	margin-top: 35px;
+	margin-left: 2px;
+	color: #000;
+}
+#leftbottom {
+	height: 26px;
+	background-image: url(/public/img/layout/trees/leftbottom.png);
+}
+
+
+#right {
+	float: left;
+	width: 610px;
+}
+.user_box {
+}
+.user_top {
+}
+.user_content {
+}
+#right_top {
+	height: 48px;
+	width: 610px;
+	float: left;
+}
+.date {
+	float: left;
+	text-align: right;
+	font-size: 11px;
+	font-weight: bold;
+	font-family: Tahoma, Arial, Verdana;
+	width: 580px;
+	margin-top: 30px;
+}
+#right_topmenu {
+	height: 65px;
+	width: 610px;
+	float: left;
+	background-image: url(/public/img/layout/trees/right_top_bg.png);
+	background-position: bottom;
+}
+#right_top_left {
+	width: 610px;
+	height: 65px;
+	float: left;
+	background-image: url(/public/img/layout/trees/right_top_left.png);
+	background-repeat: no-repeat;
+}
+#right_top_right {
+	width: 610px;
+	height: 65px;
+	float: right;
+	background-image: url(/public/img/layout/trees/right_top_right.png);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+#right_topmenu_content {
+	float: left;
+	height: 65px;
+	width: 550px;
+	overflow: hidden;
+	padding-left: 15px;
+}
+#right_header {
+	height: 185px;
+	background-color: #5093BD;
+	background-image: url(/public/img/layout/trees/banner_right.png);
+	background-repeat: repeat-y;
+	background-position: right;
+	float: left;
+	width: 610px;
+}
+#banner {
+	background-image: url(/public/img/layout/trees/banner.jpg);
+	width: 576px;
+	height: 156px;
+	margin-left: 6px;
+}
+#right_bottom {
+	height: 185px;
+	background-image: url(/public/img/layout/trees/right_bottom.png);
+	width: 610px;
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+#maincontent {
+	width: 600px;
+	float: left;
+	padding-left: 15px;
+}
+#content {
+	color: #FFFFFF;
+	width: 570px;
+	float: left;
+}
+#footer {
+	width: 800px;
+	height: 20px;
+	line-height: 20px;
+	float: left;
+	text-align: left;
+	margin-top: 20px;
+	border-top-width: 2px;
+	border-top-style: solid;
+	border-top-color: #38424E;
+}
+#othermenu {
+	float: right;
+}
+#copyright {
+	float: left;
+}

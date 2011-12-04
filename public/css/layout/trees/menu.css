@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+/*
+author: Fjodinho http://www.ueberkrass.de
+*/
+
+#othermenu ul, #othermenu li {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+}
+#othermenu a:link, #othermenu a:visited {
+	color: #CFE3EC;
+	border-left: 1px solid #fff;
+	padding: 0px 5px;
+}
+#othermenu a:hover {
+	text-decoration: underline;
+}
+ul.menu, ul#mainlevel, ul.menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.moduletable  ul {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 10px;
+}
+#leftcontent .menu a:link, #leftcontent .menu a:visited, #leftcontent .menu a:active  {
+	text-align: left;
+	color: #406F99;
+	text-decoration: none;
+	line-height: 24px;
+	height: 24px;
+	border-bottom: 1px solid #FFFFFF;
+	width: 159px;
+	display: block;
+	padding-left: 25px;
+	background-image: url(../images/mainlevel.gif);
+	background-repeat: no-repeat;
+}
+#leftcontent .menu a:hover, div.moduletable_menu ul.menu li#current a {
+	text-decoration: none;
+	text-align: right;
+}
+#leftcontent ul.menu ul a:link, #leftcontent ul.menu ul a:visited {
+	color: #999999;
+	background-image: url(none);
+	text-decoration: none;
+	padding: 2px 0px 2px 10px;
+	display: block;
+	text-align: right;
+	border: none;
+}
+#leftcontent ul.menu ul a:hover {
+	text-decoration: underline;
+}
+#right_topmenu ul, #right_topmenu li {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+}
+#right_topmenu .menu li {
+	margin: 0;
+	float:left;
+	height: 65px;
+	padding:0 0 0 22px;
+}
+#right_topmenu .menu li a {
+	display:block;
+	padding: 0px 20px 0px 0px;
+	font-size: 13px;
+	color: #fff;
+	text-decoration: none;
+	padding: 0px 22px 0 0;
+	float: left;
+	height: 65px;
+	line-height: 65px;
+}
+#right_topmenu .menu li:hover {
+	background-image: url(../images/topmenu_over_l.png);
+	background-position: bottom left;
+	background-repeat: no-repeat;
+}
+#right_topmenu .menu li:hover a {
+	background-image: url(../images/topmenu_over_r.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+#right_topmenu .menu a {
+	float:none;
+}

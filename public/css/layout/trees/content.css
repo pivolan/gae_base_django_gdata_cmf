@@ -1,0 +1,103 @@
+.moduletable_menu {
+	padding: 0;
+	margin: 0;
+}
+#left .moduletable th, #left h3 {
+	font-size: 14px;
+	color: #000;
+	padding: 0px 0px 0px 10px;
+	text-align: left;
+}
+#left .moduletable td {
+	width: 185px;
+	text-align: center;
+	color: #000;
+}
+#left p {
+	font-size: 12px;
+}
+#content  a:link, #content a:visited {
+	color: #61C600;
+	text-decoration: none;
+}
+#content a:hover  {
+	text-decoration: underline;
+	padding: 0px;
+}
+#footer   a:link, #footer  a:visited, #footer a:hover {
+	color: #61C600;
+	text-decoration: none;
+	padding: 0px;
+}
+/*
+author: Fjodinho http://www.ueberkrass.de
+copyright: GNU/GPL
+Der Link im Footer des Templates darf nicht so ohne weiteres entfernt oder unkenntlich gemacht werden. Eine Entfernung des Links ist aber gegen eine kleine Gebühr möglich.
+*/
+.contentpane  {}
+.contentpaneopen {}
+.contentheading {
+	font-size: 20px;
+	height: 30px;
+	background-image: url(../images/contentheading.gif);
+	background-repeat: repeat-x;
+	width: 100%;
+}
+.componentheading {
+	background-image: url(../images/componentheading.gif);
+	width: 570px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+	background-repeat: no-repeat;
+	padding-left: 15px;
+	margin-bottom: 10px;
+}
+.input {
+	padding: 0px 0px 0px 10px;
+	margin: 0px;
+	border: none;
+}
+.input p{
+	color: #000000;
+}
+.button {
+	font-size: 14px;
+	font-weight: bold;
+	border: 2px outset #fff;
+	background-image: url(../images/button.png);
+	background-repeat: repeat-x;
+	color: #fff;
+	margin: 5px 0px;
+	background-color: #5BC503;
+} 
+.createdate {
+	color: #999;
+}
+.modifydate {
+	color: #999;
+}
+.searchbox {
+	width: 170px;
+}
+.small {
+	color: #999999;
+}
+.sectiontableheader {
+	background-color: #CFE3EC;
+	color: #5294BD;
+	padding-left: 10px;
+	font-size: 14px;
+}
+.latestnews ul, .latestnews li {
+	padding: 0px 0px 0px 5px;
+	margin: 0 15px;
+}
+.latestnews {
+	margin: 0px;
+	padding: 0px;
+}
+td, tr, p, div   {
+	font-size: 12px;
+	color: #fff;
+}
