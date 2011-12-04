@@ -10,7 +10,7 @@ urlpatterns = patterns("",
 	(r"^energy$", "application.main.views.energy"),
 	(r"^experience$", "application.main.views.experience"),
 
-	(r"^acts/(\d*)$", "application.main.views.acts"),
+	(r"^acts/(\d.*)$", "application.main.views.acts"),
 
 	(r"^login$", "application.main.views.login"),
 	(r"^logout$", "application.main.views.logout"),

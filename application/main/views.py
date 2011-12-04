@@ -33,7 +33,7 @@ import os
 
 class view: pass
 
-acts = [
+ACTS = [
 	'',
 	'1mFb0Jyvk3S56r_yneMWuGkG3ygpPLOVruN5gNPa_PVE',
   '1wDzyAjpJUpeKNyNaUn_kn4olYuT4OxHPoMgUpEYgciY',
@@ -55,10 +55,12 @@ def offer(request):
 	return _get_doc('1r1jdCGX6OIxOlmECXCYgQ3A_dqKH6oUhAxLZA6IKMr8')
 
 
-@render_to("main/docs.html", id = None)
-def acts(request):
-	if id and id in acts:
-		return _get_doc(acts[id])
+@render_to("main/docs.html")
+def acts(request, id = None):
+	if id:
+		id = int(id)
+	if id and len(ACTS)>= id:
+		return _get_doc(ACTS[id])
 	else:
 		return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
 
@@ -127,7 +129,7 @@ def _get_doc(id):
 		'entry': entry,
 		'title': html.head.title.text,
 		'html': html,
-		'body': body,
+		'body': body.replace('http:///','/'),
 		'style': style,
 		'id': id,
 		}
