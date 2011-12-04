@@ -78,12 +78,22 @@
 
 				<div class="moduletable">
 					<h3>Авторизация</h3>
+					{% if user %}
+						<form action="/logout" method="get" name="login" id="form-login">
+							<fieldset class="input">
+								{% if is_admin %}<p>admin</p>{% endif %}
+								<p>{{ user.nickname }}</p>
+								<input type="submit" name="Submit" class="button" value="Выйти"/>
+							</fieldset>
+						</form>
+					{% else %}
+						<form action="/login" method="get" name="login" id="form-login">
+							<fieldset class="input">
+								<input type="submit" name="Submit" class="button" value="Войти"/>
+							</fieldset>
+						</form>
+					{% endif %}
 
-					<form action="/home.html" method="post" name="login" id="form-login">
-						<fieldset class="input">
-							<input type="submit" name="Submit" class="button" value="Войти"/>
-						</fieldset>
-					</form>
 
 				</div>
 			</div>
