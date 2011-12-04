@@ -16,7 +16,7 @@ TIME_ZONE = 'Europe/Moscow W-SU'
 # http://blogs.law.harvard.edu/tech/stories/storyReader$15
 LANGUAGE_CODE = 'ru-ru'
 
-SITE_ID = 1
+SITE_ID = 1 
 
 ADMIN_EMAIL = "pivolan@gmail.com"
 
