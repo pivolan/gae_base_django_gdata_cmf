@@ -32,40 +32,15 @@ import os
 
 class view: pass
 
+pages = {
+	'main':'1V-yTMB6nFsXjE7LYjM9RbSETExPG0IrPnnYAayOQdEI',
+}
 
 @render_to("main/docs.html")
-def index(request):
-	return view.__dict__
-
-
-@render_to("main/docs.html")
-def offer(request):
-	return _get_doc('1r1jdCGX6OIxOlmECXCYgQ3A_dqKH6oUhAxLZA6IKMr8')
-
-
-@render_to("main/docs.html")
-def acts(request):
-	return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
-
-
-@render_to("main/docs.html")
-def contacts(request):
-	return _get_doc('1pjbpq1rRig1Nwmn7gwoyWH1lqBk1JkOp39xHcqY32KI')
-
-
-@render_to("main/docs.html")
-def experience(request):
-	return {}
-
-
-@render_to("main/docs.html")
-def certification(request):
-	return _get_doc('1Uthw7v7VGbMRRYhYkdHoSIz76pTQuZJBhSuWR-yXXVE')
-
-
-@render_to("main/docs.html")
-def energy(request):
-	return _get_doc('1Yx0pbyKlCm6lBCoZ74OkESiz5UnWKsdzf3dryMqyA_8')
+def index(request, id):
+	if id in pages:
+		return _get_doc(pages[id])
+	return _get_doc('1KCCoq3sGOpE6aMuoJMBoZzjNdLPEdGxgX23p40bOev4')
 
 
 def _get_doc(id):
