@@ -120,27 +120,6 @@
 						</div>
 					</div>
 
-					<div class="art-block">
-						<div class="art-block-body">
-
-							<div class="art-blockheader">
-								{% if user %}
-									<h3 class="t"><a href="/logout">Выйти</a></h3>
-									{% if is_admin %}
-										<p>admin</p>
-									{% endif %}
-									<p>
-										{{ user.nickname }}
-									</p>
-								{% else %}
-									<h3 class="t"><a href="/login">Войти</a></h3>
-								{% endif %}
-							</div>
-
-							<div class="cleared"></div>
-						</div>
-					</div>
-
 					<div class="cleared"></div>
 				</div>
 				<div class="art-layout-cell art-content">
@@ -196,7 +175,7 @@
 
 							<div class="art-blockheader">
 								<h3 class="t">
-									Реклама</h3>
+									</h3>
 							</div>
 							<div class="art-blockcontent">
 								<div class="art-blockcontent-body">
@@ -245,7 +224,19 @@
 	</div>
 </div>
 <div class="cleared"></div>
-<p class="art-page-footer">Designed by <a href="http://www.pc-didi.at">Webdesign PC-DIDI</a></p>
+<p class="art-page-footer login">
+	{% if user %}
+		<a href="/logout">Выйти</a>
+		{% if is_admin %}
+			<p>admin</p>
+		{% endif %}
+		<p>
+			{{ user.nickname }}
+		</p>
+	{% else %}
+		<a href="/login">Войти</a>
+	{% endif %}
+</p>
 
 <div class="cleared"></div>
 </div>
