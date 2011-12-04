@@ -33,14 +33,14 @@ import os
 class view: pass
 
 pages = {
-	'main':'1V-yTMB6nFsXjE7LYjM9RbSETExPG0IrPnnYAayOQdEI',
+	'contacts':'1NX0BCGJDDV7-t-D3L_HXLP8D1wOnTssTENKScQnp9xQ',
 }
 
 @render_to("main/docs.html")
-def index(request, id):
+def index(request, id = None):
 	if id in pages:
 		return _get_doc(pages[id])
-	return _get_doc('1KCCoq3sGOpE6aMuoJMBoZzjNdLPEdGxgX23p40bOev4')
+	return _get_doc('1xh1Z9py4oxUQiFleMTEV1SrkD8WkeXhUnZZ5z5Fv3Es')
 
 
 def _get_doc(id):
