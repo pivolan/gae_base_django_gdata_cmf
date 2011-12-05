@@ -60,7 +60,7 @@ def acts(request, id = None):
 	if id:
 		id = int(id)
 	if id and len(ACTS)>= id:
-		return _get_doc(ACTS[id])
+		return _get_doc(ACTS[id], False)
 	else:
 		return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
 
@@ -108,12 +108,12 @@ def energy(request):
 	return _get_doc('1Yx0pbyKlCm6lBCoZ74OkESiz5UnWKsdzf3dryMqyA_8')
 
 
-def _get_doc(id):
+def _get_doc(id, use_cache = True):
 	if googleUser.is_current_user_admin():
 		memcache.delete(id)
 		
-	entry = memcache.get(id)
-	if not entry:
+	result = memcache.get(id)
+	if not result:
 		client = gdata.docs.client.DocsClient(source='yourCo-yourAppName-v1')
 		client.ssl = True # Force all API requests through HTTPS
 		client.http_client.debug = True # Set to True for debugging HTTP requests
@@ -121,18 +121,21 @@ def _get_doc(id):
 
 		entry = client.GetFileContent(
 			'/feeds/download/documents/Export?id=%s&format=html' % id)
-		memcache.add(id, entry)
-	html = BeautifulStoneSoup(entry, convertEntities=BeautifulStoneSoup.HTML_ENTITIES)
-	body = html.body.renderContents()
-	style = html.style.prettify()
-	return {
-		'entry': entry,
-		'title': html.head.title.text,
-		'html': html,
-		'body': body.replace('http:///','/'),
-		'style': style,
-		'id': id,
-		}
+		html = BeautifulStoneSoup(entry, convertEntities=BeautifulStoneSoup.HTML_ENTITIES)
+		body = html.body.renderContents()
+		style = html.style.prettify()
+
+		result = {
+			'entry':entry,
+			'title': html.head.title.text,
+		  'html':html,
+			'body': body.replace('http:///','/'),
+			'style': style,
+			'id': id,
+			}
+		if use_cache:
+			memcache.add(id, result)
+	return result
 
 
 def login(request):
