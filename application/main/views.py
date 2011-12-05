@@ -42,7 +42,7 @@ ACTS = [
   '15g6msiv7uW2MZBcPdCaECiroDoxl6w1Lue-8YChzNsE',
   '1j0R0btcP7HULBINba1QVm1-i0fMNWvazn5C7f0fDQ9c',
   '1P9kltGeAVzL-PAgM4J4yKkUBSPr_zqw__Ki0uhhaLH4',
-  '1yPg7PgbuTufUizfB7kB6MJs5pr9D2UXtSLz56_R_Zvk',
+  '1hiFOdwuVK2h3q2FHoVRE2au0IpI8xvg3phpTV4F_G14',
 ]
 
 @render_to("main/docs.html")
