@@ -26,287 +26,84 @@
 <body>
 
 <div id="marginauto">
-<div id="container">
-<div id="left">
-	<div id="leftspace">
-		<div id="lefttop">
-			<div id="logo"></div>
-			<div id="leftcontent">
-				<div class="moduletable_menu">
-					<h3>Меню</h3>
-					<ul class="menu">
-						<li id="current" class="item1"><a href="/">
-							<span>Startseite</span>
-						</a></li>
-						<li class="parent item27"><a href="/">
-							<span>Joomla! Überblick</span>
-						</a></li>
-						<li class="item2"><a href="/">
-							<span>Joomla!-Lizenz</span>
-						</a></li>
-						<li class="item37"><a href="/">
-							<span>Mehr über Joomla!</span>
-						</a></li>
-						<li class="item41"><a href="/">
-							<span>FAQ</span>
-						</a></li>
-						<li class="item50"><a href="/">
-							<span>Neuigkeiten</span>
-						</a></li>
-						<li class="item58"><a href="/">
-							<span>Impressum</span>
-						</a></li>
-					</ul>
-				</div>
-
-				<div class="moduletable">
-					<h3>Реклама</h3>
-
-					<div class="bannergroup">
-
-						<div class="banneritem"><br>
-
-							<div align="center">
-							</div>
-							<br>
-
-							<div class="clr"></div>
+	<div id="container">
+		<div id="left">
+			<div id="leftspace">
+				<div id="lefttop">
+					<div id="logo"></div>
+					<div id="leftcontent">
+						<div class="moduletable_menu">
+							<h3>Меню</h3>
+							<ul class="menu">
+								{% autoescape off %}
+									<li {{ menu_current.about }} class=""><a href="/">
+										<span>О компании</span>
+									</a></li>
+									<li {{ menu_current.equip }} class=""><a href="/equip">
+										<span>Приборы</span>
+									</a></li>
+									<li {{ menu_current.exp }} class=""><a href="/exp">
+										<span>Опыт работы</span>
+									</a></li>
+									<li {{ menu_current.lic }} class=""><a href="/lic">
+										<span>Лицензии</span>
+									</a></li>
+									<li {{ menu_current.offer }} class=""><a href="/offer">
+										<span>Предложение заказчика</span>
+									</a></li>
+									<li {{ menu_current.par }} class=""><a href="/par">
+										<span>Партнеры</span>
+									</a></li>
+									<li {{ menu_current.con }} class=""><a href="/con">
+										<span>Наши контакты</span>
+									</a></li>
+								{% endautoescape %}
+							</ul>
 						</div>
-
+					</div>
+				</div>
+				<div id="leftbottom"></div>
+			</div>
+			<div class="user_box"></div>
+		</div>
+		<div id="right">
+			<div id="right_top">
+			</div>
+			<div id="right_topmenu">
+				<div id="right_top_left">
+					<div id="right_top_right">
+						<div id="right_topmenu_content"></div>
 					</div>
 				</div>
 
-				<div class="moduletable">
-					<h3>Авторизация</h3>
-					{% if user %}
-						<form action="/logout" method="get" name="login" id="form-login">
-							<fieldset class="input">
-								{% if is_admin %}<p>admin</p>{% endif %}
-								<p>{{ user.nickname }}</p>
-								<input type="submit" name="Submit" class="button" value="Выйти"/>
-							</fieldset>
-						</form>
-					{% else %}
-						<form action="/login" method="get" name="login" id="form-login">
-							<fieldset class="input">
-								<input type="submit" name="Submit" class="button" value="Войти"/>
-							</fieldset>
-						</form>
-					{% endif %}
-
-
+			</div>
+			<div id="right_header">
+				<div id="right_bottom">
+					<div id="banner"></div>
+				</div>
+			</div>
+			<div id="maincontent">
+				<div id="content">
+					{% block body_text %}
+					{% endblock %}
 				</div>
 			</div>
 		</div>
-		<div id="leftbottom"></div>
-	</div>
-	<div class="user_box"></div>
-</div>
-<div id="right">
-	<div id="right_top">
-	</div>
-	<div id="right_topmenu">
-		<div id="right_top_left">
-			<div id="right_top_right">
-				<div id="right_topmenu_content"></div>
+		<div id="footer">
+			<div id="copyright">Design by <a href="http://www.ueberkrass.de">www.ueberkrass.de</a></div>
+			<div id="othermenu">
+				{% if user %}
+					{% if is_admin %}
+						<p>admin</p>
+					{% endif %}
+					<p>{{ user.nickname }}</p>
+					<a href="/logout">Выйти</a>
+				{% else %}
+					<a href="/login">Войти</a>
+				{% endif %}
 			</div>
 		</div>
-
 	</div>
-	<div id="right_header">
-		<div id="right_bottom">
-			<div id="banner"></div>
-		</div>
-	</div>
-	<div id="maincontent">
-		<div id="content">
-			{% block body_text %}
-				<table class="blog" cellpadding="0" cellspacing="0">
-					<tr>
-						<td valign="top">
-							<div>
-
-								<table class="contentpaneopen">
-									<tr>
-										<td class="contentheading" width="100%">
-											<a href="/neuigkeiten/1-willkommen-bei-joomla.html" class="contentpagetitle">
-												Willkommen bei Joomla!</a>
-										</td>
-
-									</tr>
-								</table>
-								<table class="contentpaneopen">
-
-									<tr>
-										<td valign="top" colspan="2">
-											<div align="left"><strong>Joomla! ist freie Zusammenarbeit von Menschen auf der ganzen Welt. Sie
-												unterstützt eine Inhaltsverwaltung, die es Ihnen ermöglicht schnell und effizient mehrsprachige
-												Webseiten, Online Communities, Medienportale, Blogs und Shopsysteme zu realisieren.
-												<br/></strong>
-											</div>
-											<p>
-												<strong><br/></strong><img src="/images/stories/powered_by.png" border="0" alt="Joomla!-Logo" title="Beispielbeschreibung" hspace="6" vspace="4" align="left"/>Joomla!
-												bietet eine einfach zu verstehende graphische Oberfläche, die es Ihnen ermöglicht, große Inhalte
-												einfach zu verwalten und zu veröffentlichen. Dabei unterstützt Joomla! nicht nur HTML sondern
-												auch
-												Dokumente und Rich Media. Joomla! wird schon jetzt von vielen Organisationen von jeder Größe im
-												Internet, in Intranets und sogar in Extranets verwendet. Joomla! wird von einer immer weiter
-												wachsenden Gemeinschaft von Benutzer weltweit unterstützt.
-											</p>
-										</td>
-									</tr>
-
-									<tr>
-
-										<td colspan="2">
-											<a href="/neuigkeiten/1-willkommen-bei-joomla.html" class="readon">
-												Weiterlesen...</a>
-										</td>
-									</tr>
-
-								</table>
-								<span class="article_separator">&nbsp;</span>
-							</div>
-						</td>
-
-					</tr>
-
-					<tr>
-						<td valign="top">
-							<table width="100%" cellpadding="0" cellspacing="0">
-								<tr>
-									<td valign="top" width="50%" class="article_column">
-
-										<table class="contentpaneopen">
-											<tr>
-												<td class="contentheading" width="100%">
-													<a href="/neuigkeiten/6-wir-sind-freiwillige.html" class="contentpagetitle">
-
-														Wir sind Freiwillige</a>
-												</td>
-
-											</tr>
-										</table>
-										<table class="contentpaneopen">
-
-											<tr>
-												<td valign="top" colspan="2">
-													<p>Das Joomla! Kernteam besteht aus freiwillige Entwickler, Kreative, Administratoren und
-														Manager. Diese geölte Maschine wird oft kopiert, aber nie übertroffen. Joomla! hat einige
-														sehr
-														talentierte Leute, welche Open Source Konzepte an die vorderste Front der Industriestandarte
-														führt. Joomla! 1.5 ist ein grosser Schritt vorwärts und räpresentiert die spannendste
-														Joomla!-Ausgabe in der Geschichte des Projekts.
-													</p>
-												</td>
-
-											</tr>
-
-											<tr>
-												<td colspan="2">
-													<a href="/neuigkeiten/6-wir-sind-freiwillige.html" class="readon">
-														Weiterlesen...</a>
-												</td>
-											</tr>
-
-										</table>
-										<span class="article_separator">&nbsp;</span>
-
-									</td>
-									<td valign="top" width="50%" class="article_column column_separator">
-
-										<table class="contentpaneopen">
-											<tr>
-												<td class="contentheading" width="100%">
-													<a href="/neuigkeiten/7-bleib-beim-code.html" class="contentpagetitle">
-														Bleib beim Code!</a>
-												</td>
-
-											</tr>
-
-										</table>
-										<table class="contentpaneopen">
-
-											<tr>
-												<td valign="top" colspan="2">
-													Um diese Ausgabe des Codes zu sichern, fing Wilco Jansen an Rum and dem mitführenden
-													Entwickler
-													Johan Janssens zu senden. Johan, der eine Vorliebe für Rum hatte, seit er den ersten der
-													Karibische Piraten Filme gesehen hat, nahm die Köder an und mischte es mit Cola und so sind
-													wir
-													hier angelangt, mit der neusten 1.5 Ausgabe. Es sieht ganz danach aus, als ob Piratengeschwätz
-													noch viel Gebrauch in der Zukunft der Joomla! Entwicklung haben wird - wenigstens bis der Rum
-													ausgeht.<br/></td>
-											</tr>
-
-											<tr>
-												<td colspan="2">
-													<a href="/neuigkeiten/7-bleib-beim-code.html" class="readon">
-
-														Weiterlesen...</a>
-												</td>
-											</tr>
-
-										</table>
-										<span class="article_separator">&nbsp;</span>
-									</td>
-
-								</tr>
-							</table>
-						</td>
-					</tr>
-
-					<tr>
-						<td valign="top">
-							<div class="blog_more">
-								<div>
-									<strong>Weitere Beiträge...</strong>
-								</div>
-								<ul>
-									<li>
-										<a class="blogsection" href="/kategorie-blog/14-fuer-was-ist-die-ftp-ebene.html">
-											Für was ist die FTP-Ebene?</a>
-
-									</li>
-									<li>
-										<a class="blogsection" href="/bereich-blog/28-erfahrene-benutzer/16-nur-noch-ein-fenster.html">
-											Nur noch ein Fenster</a>
-									</li>
-								</ul>
-							</div>
-						</td>
-					</tr>
-
-					<tr>
-						<td valign="top" align="center">
-							&lt;&lt;
-							<span class="pagenav">Start</span>
-							&lt;
-							<span class="pagenav">Zurück</span>
-							<span class="pagenav">1</span>
-							<a title="2" href="/home.html?template=simplyblu&amp;start=3" class="pagenav">2</a>
-							<a title="Weiter" href="/home.html?template=simplyblu&amp;start=3" class="pagenav">Weiter</a> &gt;
-							<a title="Ende" href="/home.html?template=simplyblu&amp;start=3" class="pagenav">Ende</a> &gt;&gt;
-							<br/><br/>
-
-						</td>
-					</tr>
-					<tr>
-						<td valign="top" align="center">
-							Seite 1 von 2
-						</td>
-					</tr>
-				</table>
-			{% endblock %}
-		</div>
-	</div>
-</div>
-<div id="footer">
-	<div id="copyright">Design by <a href="http://www.ueberkrass.de">www.ueberkrass.de</a></div>
-	<div id="othermenu">
-	</div>
-</div>
-</div>
 </div>
 </body>
 </html>
