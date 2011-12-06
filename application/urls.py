@@ -9,6 +9,8 @@ urlpatterns = patterns("",
 	(r"^certification$", "application.main.views.certification"),
 	(r"^energy$", "application.main.views.energy"),
 	(r"^experience$", "application.main.views.experience"),
+	(r"^partners$", "application.main.views.partners"),
+	(r"^license$", "application.main.views.license"),
 
 	(r"^acts/(\d.*)$", "application.main.views.acts"),
 

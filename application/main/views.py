@@ -108,6 +108,16 @@ def energy(request):
 	return _get_doc('1Yx0pbyKlCm6lBCoZ74OkESiz5UnWKsdzf3dryMqyA_8')
 
 
+@render_to("main/docs.html")
+def partners(request):
+	return _get_doc('1zmIpDSiHQa2_N-oYGhvGiv_tGQaECktvaAw3J4gIDhE')
+
+
+@render_to("main/license.html")
+def license(request):
+	return {}
+
+
 def _get_doc(id, use_cache = True):
 	if googleUser.is_current_user_admin():
 		memcache.delete(id)
