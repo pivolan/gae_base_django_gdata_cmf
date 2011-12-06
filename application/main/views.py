@@ -49,7 +49,7 @@ def index(request, id='about'):
 		result = _get_doc(pages[id])
 	else:
 		id = 'about'
-	result = _get_doc(pages['about'])
+		result = _get_doc(pages[id])
 	result['menu_current'] = {id: 'id="current"'}
 	return result
 
