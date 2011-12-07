@@ -54,6 +54,11 @@ def index(request, id='about'):
 	return result
 
 
+@render_to("main/license.html")
+def license(request):
+	return {}
+
+
 def _get_doc(id):
 	if googleUser.is_current_user_admin():
 		memcache.delete(id)
