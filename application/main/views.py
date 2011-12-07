@@ -56,7 +56,7 @@ def index(request, id='about'):
 
 @render_to("main/license.html")
 def license(request):
-	return {}
+	return {'menu_current': {'lic': 'id="current"'}}
 
 
 def _get_doc(id):

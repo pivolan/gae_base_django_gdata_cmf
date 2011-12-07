@@ -7,6 +7,7 @@ urlpatterns = patterns("",
 	(r"^login$", "application.main.views.login"),
 	(r"^logout$", "application.main.views.logout"),
 
+	(r"^lic", "application.main.views.license"),
 	(r"^(.*)$", "application.main.views.index"),
 
 #	(r"^admin/", include("application.admin.urls")),
