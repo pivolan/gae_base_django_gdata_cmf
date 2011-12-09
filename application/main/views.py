@@ -69,10 +69,10 @@ def contacts(request):
 	if request.method == 'POST':
 		form = Feedback(request.POST)
 		if form.is_valid():
-			mail.send_mail(sender=form.cleaned_data['email'],
+			mail.send_mail(sender=settings.ADMIN_EMAIL,
 			to=settings.ADMIN_EMAIL,
 			subject=form.cleaned_data['title'],
-			body=form.cleaned_data['text'])
+			body=form.cleaned_data['text'] + form.cleaned_data['email'])
 			return HttpResponseRedirect('/contacts')
 
 	result['form'] = {
