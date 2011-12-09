@@ -70,13 +70,13 @@ def contacts(request):
 		form = Feedback(request.POST)
 		if form.is_valid():
 			mail.send_mail(sender=settings.ADMIN_EMAIL,
-			to=settings.ADMIN_EMAIL,
-			subject=form.cleaned_data['title'],
-			body=form.cleaned_data['text'] + form.cleaned_data['email'])
+						   to=settings.ADMIN_EMAIL,
+						   subject=form.cleaned_data['title'],
+						   body=form.cleaned_data['text'] + ' ' + form.cleaned_data['email'])
 			return HttpResponseRedirect('/contacts')
 
 	result['form'] = {
-		'feedback':form
+		'feedback': form
 	}
 	return result
 
