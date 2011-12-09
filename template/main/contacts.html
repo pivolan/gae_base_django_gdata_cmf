@@ -1,5 +1,9 @@
 {% extends "layouts/trees.html" %}
+{% block add_js %}
+	<script src="/public/js/jquery/jquery-1.3.2.js"></script>
+{% endblock %}
 {% block add_css %}{{ style|safe }}{% endblock %}
+
 {% block title %}{{ title }}{% endblock  %}
 
 {% block body_title_with_url %}
