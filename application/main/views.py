@@ -13,6 +13,7 @@ from pprint import pprint
 
 from library.system.util import render_to
 from application.main.models import *
+from application.main.forms import Feedback
 
 from google.appengine.api import memcache
 from google.appengine.api import mail
@@ -57,6 +58,27 @@ def index(request, id='about'):
 @render_to("main/license.html")
 def license(request):
 	return {'menu_current': {'lic': 'id="current"'}}
+
+
+@render_to("main/contacts.html")
+def contacts(request):
+	id = 'con'
+	result = _get_doc(pages[id])
+	result['menu_current'] = {id: 'id="current"'}
+	form = Feedback()
+	if request.method == 'POST':
+		form = Feedback(request.POST)
+		if form.is_valid():
+			mail.send_mail(sender=form.cleaned_data['email'],
+			to=settings.ADMIN_EMAIL,
+			subject=form.cleaned_data['title'],
+			body=form.cleaned_data['text'])
+			return HttpResponseRedirect('/contacts')
+
+	result['form'] = {
+		'feedback':form
+	}
+	return result
 
 
 def _get_doc(id):

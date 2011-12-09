@@ -3,7 +3,7 @@ __author__ = 'pivo'
 from django import forms
 from library.system.util import render_to_str
 
-class feedback(forms.Form):
+class Feedback(forms.Form):
 	company = forms.CharField(required=False)
 	address = forms.CharField(required=True)
 	phone = forms.CharField(required=True)
