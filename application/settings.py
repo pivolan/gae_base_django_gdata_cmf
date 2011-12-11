@@ -19,9 +19,9 @@ LANGUAGE_CODE = 'ru-ru'
 SITE_ID = 1
 
 ADMIN_EMAIL = "pivolan@gmail.com"
-
-DOCS_EMAIL = 'pivolan@gmail.com'
-DOCS_PASS = 'treambarachegevara'
+from password import password
+DOCS_EMAIL = password.EMAIL
+DOCS_PASS = password.PASS
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.

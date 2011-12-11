@@ -1,0 +1,140 @@
+body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	background-color: #ceeaff;
+	font-family: "Times New Roman"
+}
+
+.main {
+	width: 900px;
+	margin: 0 auto;
+	font-family: "Times New Roman";
+}
+
+.head {
+	background: url('/public/img/layout/171/background.png') no-repeat top center;
+	margin: 10px 0 0 0;
+}
+
+	.head span.fl:first-letter {
+		color: #c70b18;
+	}
+
+	.head h1.top_title {
+		font-size: 33px;
+		text-align: center;
+		font-weight: normal;
+		padding: 0;
+		margin: 5px 0;
+		font-family: "Times New Roman";
+	}
+
+	.head h3.top_title {
+		font-family: "Times New Roman";
+		font-size: 15px;
+		text-align: center;
+		font-weight: normal;
+		padding: 0;
+		margin: 0 0 5px 0;
+	}
+
+	.head h1.top_title:first-letter {
+		color: #c70b18;
+		font-family: "Times New Roman";
+	}
+
+	.head img.head_image {
+		margin: 0 auto;
+		width: 854px;
+		height: 216px;
+	}
+
+span.red {
+	color: #c70b18;
+}
+
+.clear {
+	clear: both;
+}
+
+.left {
+	float: left;
+	width: 235px;
+	margin: 0;
+	padding: 0;
+}
+
+.menu {
+	width: 195px;
+	background: url("/public/img/layout/171/menu_bg.png") repeat-y;
+	margin-top: 3px;
+	margin-bottom: 4px;
+	margin-left: 30px;
+	font-size: 12px;
+}
+
+.menu .top_bg {
+	position: relative;
+	top: -3px;
+	height: 3px;
+	width: 195px;
+	background: url("/public/img/layout/171/menu_bg_top.png");
+}
+
+.menu .bottom_bg {
+	position: relative;
+	bottom: -4px;
+	height: 4px;
+	width: 195px;
+	background: url("/public/img/layout/171/menu_bg_bottom.png");
+}
+
+.menu .menu_title {
+	margin: 1px 7px 3px 5px;
+	background: url("/public/img/layout/171/menu_title.png") repeat-x;
+	height: 21px;
+	color: #c70b18;
+	text-align: center;
+	font-size: 14px;
+}
+
+.common {
+	text-align: left;
+
+}
+
+.content {
+	margin-left: 235px;
+	margin-right: 34px;
+	min-height: 400px;
+}
+
+ul.menu_list {
+	padding: 0 0 12px 29px;
+	margin: 0;
+}
+
+ul.menu_list li.menu_list_item {
+	list-style-image: url("/public/img/layout/171/list_item.png");
+	margin-top: 6px;
+	height: 20px;
+}
+
+.menu_list li.menu_list_item a {
+	color: #330000;
+}
+
+.menu_list li.menu_list_item:first-letter {
+	color: #c70b18;
+}
+
+.left_bg {
+	height: 300px;
+	background: url("/public/img/layout/171/bg_left.png") 36px 40px no-repeat;
+}
+
+.foot {
+	float:left;
+}

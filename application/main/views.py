@@ -30,48 +30,39 @@ import datetime
 from datetime import timedelta
 import os
 
-class view: pass
-
 
 @render_to("main/docs.html")
-def index(request):
-	return view.__dict__
+def index(request, q=None):
+	if q:
+		return _get_doc_q(q)
+	return _get_doc('1KCCoq3sGOpE6aMuoJMBoZzjNdLPEdGxgX23p40bOev4')
 
 
-@render_to("main/docs.html")
-def offer(request):
-	return _get_doc('1r1jdCGX6OIxOlmECXCYgQ3A_dqKH6oUhAxLZA6IKMr8')
+def _get_doc_q(q):
+	q = q.encode('UTF-8')
+	if googleUser.is_current_user_admin():
+		memcache.delete(q)
 
+	feeds = memcache.get(q)
+	if not feeds:
+		client = gdata.docs.client.DocsClient(source='yourCo-yourAppName-v1')
+		client.ssl = True # Force all API requests through HTTPS
+		client.http_client.debug = True # Set to True for debugging HTTP requests
+		client.ClientLogin(settings.DOCS_EMAIL, settings.DOCS_PASS, client.source)
+		feeds = client.GetDocList(
+			uri='/feeds/default/private/full?title=%s&title-exact=true&max-results=1&showfolders=true' % q)
+		memcache.add(q, feeds)
 
-@render_to("main/docs.html")
-def acts(request):
-	return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
-
-
-@render_to("main/docs.html")
-def contacts(request):
-	return _get_doc('1pjbpq1rRig1Nwmn7gwoyWH1lqBk1JkOp39xHcqY32KI')
-
-
-@render_to("main/docs.html")
-def experience(request):
-	return {}
-
-
-@render_to("main/docs.html")
-def certification(request):
-	return _get_doc('1Uthw7v7VGbMRRYhYkdHoSIz76pTQuZJBhSuWR-yXXVE')
-
-
-@render_to("main/docs.html")
-def energy(request):
-	return _get_doc('1Yx0pbyKlCm6lBCoZ74OkESiz5UnWKsdzf3dryMqyA_8')
+	for doc in feeds.entry:
+		memcache.add(q, doc.resource_id.text.replace('document:', ''))
+		return _get_doc(doc.resource_id.text.replace('document:', ''))
+	return False
 
 
 def _get_doc(id):
 	if googleUser.is_current_user_admin():
 		memcache.delete(id)
-		
+
 	entry = memcache.get(id)
 	if not entry:
 		client = gdata.docs.client.DocsClient(source='yourCo-yourAppName-v1')
@@ -89,7 +80,7 @@ def _get_doc(id):
 		'entry': entry,
 		'title': html.head.title.text,
 		'html': html,
-		'body': body,
+		'body': body.replace('http:///','/'),
 		'style': style,
 		'id': id,
 		}
