@@ -1,6 +1,8 @@
 {% extends "layouts/archi.html" %}
+{% block description %}{{ description }}{% endblock description %}
+{% block keywords %}{{ keywords }}{% endblock %}
 {% block add_css %}{{ style|safe }}{% endblock %}
-{% block title %}{{ title }}{% endblock  %}
+{% block title %}{{ head_title }}{% endblock  %}
 
 {% block body_title_with_url %}
 	<h2 class="art-postheader">

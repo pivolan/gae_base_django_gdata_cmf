@@ -132,16 +132,35 @@ def _get_doc(id, use_cache = True):
 		entry = client.GetFileContent(
 			'/feeds/download/documents/Export?id=%s&format=html' % id)
 		html = BeautifulStoneSoup(entry, convertEntities=BeautifulStoneSoup.HTML_ENTITIES)
+
+		head_title = html.body.div.find(text=re.compile("title = .*"))
+		keywords = html.body.div.find(text=re.compile("keywords = .*"))
+		description = html.body.div.find(text=re.compile("description = .*"))
+		title = html.head.title.text
+		
+		if head_title:
+			head_title = head_title.replace("title = ", '')
+		else:
+			head_title = title
+		if keywords:
+			keywords = keywords.replace("keywords = ", '')
+		if description:
+			description = description.replace("description = ", '')
+
+		[divs.extract() for divs in html.body.findAll('div')]
 		body = html.body.renderContents()
 		style = html.style.prettify()
 
 		result = {
 			'entry':entry,
-			'title': html.head.title.text,
+			'title': title,
 		  'html':html,
 			'body': body.replace('http:///','/'),
 			'style': style,
 			'id': id,
+			'head_title': head_title,
+			'keywords':keywords,
+			'description':description,
 			}
 		if use_cache:
 			memcache.add(id, result)
