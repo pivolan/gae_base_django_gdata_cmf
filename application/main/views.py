@@ -133,9 +133,14 @@ def _get_doc(id, use_cache = True):
 			'/feeds/download/documents/Export?id=%s&format=html' % id)
 		html = BeautifulStoneSoup(entry, convertEntities=BeautifulStoneSoup.HTML_ENTITIES)
 
-		head_title = html.body.div.find(text=re.compile("title = .*"))
-		keywords = html.body.div.find(text=re.compile("keywords = .*"))
-		description = html.body.div.find(text=re.compile("description = .*"))
+		head_title = ''
+		keywords = ''
+		description = ''
+
+		if html.body.div:
+			head_title = html.body.div.find(text=re.compile("title = .*"))
+			keywords = html.body.div.find(text=re.compile("keywords = .*"))
+			description = html.body.div.find(text=re.compile("description = .*"))
 		title = html.head.title.text
 		
 		if head_title:
