@@ -81,12 +81,12 @@ def contacts(request):
 	return result
 
 
-def _get_doc(id):
+def _get_doc(id, use_cache = True):
 	if googleUser.is_current_user_admin():
 		memcache.delete(id)
 
-	entry = memcache.get(id)
-	if not entry:
+	result = memcache.get(id)
+	if not result:
 		client = gdata.docs.client.DocsClient(source='yourCo-yourAppName-v1')
 		client.ssl = True # Force all API requests through HTTPS
 		client.http_client.debug = True # Set to True for debugging HTTP requests
@@ -94,18 +94,45 @@ def _get_doc(id):
 
 		entry = client.GetFileContent(
 			'/feeds/download/documents/Export?id=%s&format=html' % id)
-		memcache.add(id, entry)
-	html = BeautifulStoneSoup(entry, convertEntities=BeautifulStoneSoup.HTML_ENTITIES)
-	body = html.body.renderContents()
-	style = html.style.prettify()
-	return {
-		'entry': entry,
-		'title': html.head.title.text,
-		'html': html,
-		'body': body,
-		'style': style,
-		'id': id,
-		}
+		html = BeautifulStoneSoup(entry, convertEntities=BeautifulStoneSoup.HTML_ENTITIES)
+
+		head_title = ''
+		keywords = ''
+		description = ''
+
+		if html.body.div:
+			head_title = html.body.div.find(text=re.compile("title = .*"))
+			keywords = html.body.div.find(text=re.compile("keywords = .*"))
+			description = html.body.div.find(text=re.compile("description = .*"))
+		title = html.head.title.text
+
+		if head_title:
+			head_title = head_title.replace("title = ", '')
+		else:
+			head_title = title
+		if keywords:
+			keywords = keywords.replace("keywords = ", '')
+		if description:
+			description = description.replace("description = ", '')
+
+		[divs.extract() for divs in html.body.findAll('div')]
+		body = html.body.renderContents()
+		style = html.style.prettify()
+
+		result = {
+			'entry':entry,
+			'title': title,
+		  'html':html,
+			'body': body.replace('http:///','/'),
+			'style': style,
+			'id': id,
+			'head_title': head_title,
+			'keywords':keywords,
+			'description':description,
+			}
+		if use_cache:
+			memcache.add(id, result)
+	return result
 
 
 def login(request):
