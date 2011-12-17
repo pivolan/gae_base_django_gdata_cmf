@@ -35,6 +35,7 @@ class view: pass
 
 pages = {
 	'about': '1xh1Z9py4oxUQiFleMTEV1SrkD8WkeXhUnZZ5z5Fv3Es',
+	'deliver': '1C9lGXhn99SDUZ49zOPr80ztmWu7tKmqCZq-NTKyZXVI',
 	'equip': '1MwmVqkS_5vlup6r9X55XwSsfHIrvM6asCZm7VT25uAs',
 	'exp': '1YC8tDpr2v203YvcTyaUTVL-EG6Jr0fbLYsyGqmU1Ai8',
 	'lic': '1ZTlKRW7pWjJYrxuqYoyblbcR7vEXf9ubZLMY2WDgOI4',
