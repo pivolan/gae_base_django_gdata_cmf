@@ -4,10 +4,7 @@
 {% endblock %}
 
 {% block body_text %}
-	{% if is_admin %}
-		<p><a target="_blank" href="https://docs.google.com/document/d/{{ id }}/edit">редактировать</a></p>
-	{% endif %}
-	{{ body|safe }}
+	{{ block.super }}
 	<div class="feedback">
 	{{ form.feedback.as_custom }}
 	</div>
