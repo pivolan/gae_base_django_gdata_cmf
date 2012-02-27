@@ -6,6 +6,7 @@ urlpatterns = patterns("",
 
 	(r"^login$", "application.main.views.login"),
 	(r"^logout$", "application.main.views.logout"),
+	(r"^filesupload$", "application.main.views.filesupload"),
 	(r"^(.*)$", "application.main.views.index"),
 
 #	(r"^admin/", include("application.admin.urls")),

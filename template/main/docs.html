@@ -9,5 +9,10 @@
 	{% if is_admin %}
 		<p><a target="_blank" href="https://docs.google.com/document/d/{{ id }}/edit">редактировать</a></p>
 	{% endif %}
+	{% for folder in folders %}
+		{{ folder.title }}
+		{{ folder.link.href }}
+	{% endfor %}
+
 	{{ body|safe }}
 {% endblock %}

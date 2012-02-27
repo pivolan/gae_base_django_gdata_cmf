@@ -2,8 +2,19 @@ application: nadya-sadik-171-izhevsk
 version: 1
 runtime: python
 api_version: 1
+threadsafe: true
+
+builtins:
+- deferred: on
 
 handlers:
+- url: /(favicon\.ico|robots\.txt)
+  static_files: public/\1
+  upload: public/files/(.*)
+  expiration: '1d'
+- url: /upload.*
+  script: upl.py
+
 - url: /public
   static_dir: public
 

@@ -55,11 +55,12 @@ def _get_doc_q(q):
 
 	for doc in feeds.entry:
 		memcache.add(q, doc.resource_id.text.replace('document:', ''))
-		return _get_doc(doc.resource_id.text.replace('document:', ''))
+		folders = doc.InFolders()
+		return _get_doc(doc.resource_id.text.replace('document:', ''), folders)
 	return False
 
 
-def _get_doc(id):
+def _get_doc(id, folders = None):
 	if googleUser.is_current_user_admin():
 		memcache.delete(id)
 
@@ -83,6 +84,7 @@ def _get_doc(id):
 		'body': body.replace('http:///','/'),
 		'style': style,
 		'id': id,
+	  'folders':folders,
 		}
 
 
@@ -92,3 +94,7 @@ def login(request):
 
 def logout(request):
 	return HttpResponseRedirect(redirect_to=googleUsers.create_logout_url(request.META['HTTP_REFERER']))
+
+@render_to('main/filesupload.html')
+def filesupload(request):
+	return {}
