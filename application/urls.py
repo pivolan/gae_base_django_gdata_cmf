@@ -11,6 +11,8 @@ urlpatterns = patterns("",
 	(r"^experience$", "application.main.views.experience"),
 	(r"^partners$", "application.main.views.partners"),
 	(r"^license$", "application.main.views.license"),
+	(r"^special_offer$", "application.main.views.special_offer"),
+	(r"^lab$", "application.main.views.lab"),
 
 	(r"^acts/(\d.*)$", "application.main.views.acts"),
 

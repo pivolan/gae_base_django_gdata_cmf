@@ -2800,3 +2800,8 @@ div.line p{
 	text-indent: -10px;
 
 }
+div.art-block ul.menu li.item469.red a{
+	color: red;
+	font-size: 105%;
+	font-weight: bold;
+}

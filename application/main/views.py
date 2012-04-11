@@ -36,14 +36,14 @@ class view: pass
 ACTS = [
 	'',
 	'1mFb0Jyvk3S56r_yneMWuGkG3ygpPLOVruN5gNPa_PVE',
-  '1wDzyAjpJUpeKNyNaUn_kn4olYuT4OxHPoMgUpEYgciY',
-  '1nHO5R2c8AYYr0zfr4SqggfzafiVxfMx2-6LJAKqA-xE',
-  '1mZlvsom4FjxLKghLoV0hBy7uVvjMs9NoZlKa7C-34eo',
-  '15g6msiv7uW2MZBcPdCaECiroDoxl6w1Lue-8YChzNsE',
-  '1j0R0btcP7HULBINba1QVm1-i0fMNWvazn5C7f0fDQ9c',
-  '1P9kltGeAVzL-PAgM4J4yKkUBSPr_zqw__Ki0uhhaLH4',
-  '1hiFOdwuVK2h3q2FHoVRE2au0IpI8xvg3phpTV4F_G14',
-]
+	'1wDzyAjpJUpeKNyNaUn_kn4olYuT4OxHPoMgUpEYgciY',
+	'1nHO5R2c8AYYr0zfr4SqggfzafiVxfMx2-6LJAKqA-xE',
+	'1mZlvsom4FjxLKghLoV0hBy7uVvjMs9NoZlKa7C-34eo',
+	'15g6msiv7uW2MZBcPdCaECiroDoxl6w1Lue-8YChzNsE',
+	'1j0R0btcP7HULBINba1QVm1-i0fMNWvazn5C7f0fDQ9c',
+	'1P9kltGeAVzL-PAgM4J4yKkUBSPr_zqw__Ki0uhhaLH4',
+	'1hiFOdwuVK2h3q2FHoVRE2au0IpI8xvg3phpTV4F_G14',
+	]
 
 @render_to("main/docs.html")
 def index(request):
@@ -56,14 +56,13 @@ def offer(request):
 
 
 @render_to("main/docs.html")
-def acts(request, id = None):
+def acts(request, id=None):
 	if id:
 		id = int(id)
-	if id and len(ACTS)>= id:
+	if id and len(ACTS) >= id:
 		return _get_doc(ACTS[id], False)
 	else:
 		return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
-
 
 
 @render_to("main/contacts.html")
@@ -73,9 +72,9 @@ def contacts(request):
 		form = feedback_form(request.POST)
 		if form.is_valid():
 			mail.send_mail(sender=settings.ADMIN_EMAIL,
-			               to=settings.ADMIN_EMAIL,
-			               subject=form.cleaned_data['title'],
-			               body=form.cleaned_data['text'] + form.cleaned_data['email'])
+						   to=settings.ADMIN_EMAIL,
+						   subject=form.cleaned_data['title'],
+						   body=form.cleaned_data['text'] + form.cleaned_data['email'])
 			return HttpResponseRedirect('/contacts')
 	else:
 		initial_data = {}
@@ -99,6 +98,16 @@ def experience(request):
 
 
 @render_to("main/docs.html")
+def lab(request):
+	return _get_doc('1Qf2dtnGb1-gafs2ygZfNj62cCG-6ZEzWMuN_-Np0cH0')
+
+
+@render_to("main/docs.html")
+def special_offer(request):
+	return _get_doc('15YsuIiHKRVTglyER5ONT91PIDlJ1PcAd39CgqdesSP4')
+
+
+@render_to("main/docs.html")
 def certification(request):
 	return _get_doc('1Uthw7v7VGbMRRYhYkdHoSIz76pTQuZJBhSuWR-yXXVE')
 
@@ -118,10 +127,10 @@ def license(request):
 	return {}
 
 
-def _get_doc(id, use_cache = True):
+def _get_doc(id, use_cache=True):
 	if googleUser.is_current_user_admin():
 		memcache.delete(id)
-		
+
 	result = memcache.get(id)
 	if not result:
 		client = gdata.docs.client.DocsClient(source='yourCo-yourAppName-v1')
@@ -142,7 +151,7 @@ def _get_doc(id, use_cache = True):
 			keywords = html.body.div.find(text=re.compile("keywords = .*"))
 			description = html.body.div.find(text=re.compile("description = .*"))
 		title = html.head.title.text
-		
+
 		if head_title:
 			head_title = head_title.replace("title = ", '')
 		else:
@@ -157,15 +166,15 @@ def _get_doc(id, use_cache = True):
 		style = html.style.prettify()
 
 		result = {
-			'entry':entry,
+			'entry': entry,
 			'title': title,
-		  'html':html,
-			'body': body.replace('http:///','/'),
+			'html': html,
+			'body': body.replace('http:///', '/'),
 			'style': style,
 			'id': id,
 			'head_title': head_title,
-			'keywords':keywords,
-			'description':description,
+			'keywords': keywords,
+			'description': description,
 			}
 		if use_cache:
 			memcache.add(id, result)
