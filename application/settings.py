@@ -18,7 +18,7 @@ LANGUAGE_CODE = 'ru-ru'
 
 SITE_ID = 1
 
-ADMIN_EMAIL = "pivolan@gmail.com"
+ADMIN_EMAIL = "robingood3412@gmail.com"
 
 DOCS_EMAIL = 'beregchine@gmail.com'
 DOCS_PASS = 'chukamaka'
