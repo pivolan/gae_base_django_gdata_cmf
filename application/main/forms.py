@@ -4,10 +4,7 @@ from django import forms
 from library.system.util import render_to_str
 
 class feedback(forms.Form):
-	company = forms.CharField(required=False)
-	address = forms.CharField(required=True)
-	phone = forms.CharField(required=True)
-	fio = forms.CharField(required=False)
+	fio = forms.CharField(required=True)
 	email = forms.EmailField(required=True)
 	title = forms.CharField(required=True)
 	text = forms.CharField(required=False, widget=forms.Textarea)

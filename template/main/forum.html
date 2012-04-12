@@ -1,0 +1,16 @@
+{% extends "layouts/robingood18.html" %}
+{% block body_text %}
+	{% if is_admin %}
+		<p><a target="_blank" href="https://docs.google.com/document/d/{{ id }}/edit">редактировать</a></p>
+	{% endif %}
+	<div class="widget widget-text" id="widget-97111ca2-f6ce-597a-940f-47802c01d525">
+		<div class="widget-content"><p><span style="font-size: 16px; font-weight: bold;">Пообщаться на тему возврата комиссий можно на нашем форуме:&nbsp;<a
+				class=" link" href="http://forum.robinhood16.ru/">http://forum.robinhood16.ru/</a></span></p>
+
+			<p><span style="font-size: 16px; font-weight: bold;">Если у вас есть, что сказать по существу- воспользуйтесь нашей контактной формой:</span>
+			</p></div>
+	</div>
+	<div>
+		{{ form.as_custom }}
+	</div>
+{% endblock %}

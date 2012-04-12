@@ -14,6 +14,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
+msgid "success"
+msgstr "Сообщение успешно отправлено"
+
 #: conf/global_settings.py:44
 msgid "This Username is not exist"
 msgstr "Пользователя с таким логином не существует"

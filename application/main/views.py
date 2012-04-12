@@ -33,95 +33,57 @@ import os
 
 class view: pass
 
-ACTS = [
-	'',
-	'1mFb0Jyvk3S56r_yneMWuGkG3ygpPLOVruN5gNPa_PVE',
-  '1wDzyAjpJUpeKNyNaUn_kn4olYuT4OxHPoMgUpEYgciY',
-  '1nHO5R2c8AYYr0zfr4SqggfzafiVxfMx2-6LJAKqA-xE',
-  '1mZlvsom4FjxLKghLoV0hBy7uVvjMs9NoZlKa7C-34eo',
-  '15g6msiv7uW2MZBcPdCaECiroDoxl6w1Lue-8YChzNsE',
-  '1j0R0btcP7HULBINba1QVm1-i0fMNWvazn5C7f0fDQ9c',
-  '1P9kltGeAVzL-PAgM4J4yKkUBSPr_zqw__Ki0uhhaLH4',
-  '1hiFOdwuVK2h3q2FHoVRE2au0IpI8xvg3phpTV4F_G14',
-]
+PAGES = {
+	'main': '18VcZvV4_7nNxg4258Sn4UBx4HbTPXOlPg3qtkcmeaYI',
+	'debt': '16AG7bjr10VOBePwjBg6YFiq6TZHP4y71VlzHnW6HJZs',
+	'instruction': '1BWPNkoszVKLMYgcw2T7c7LfILECfhB7DtiuwyNxavtk',
+	'coop': '12OjeSXWP26805u1sGzX3wPG1jMKghzQ4mK3qwEPiGv8',
+	'donate': '1JX_FDVIGWdwziqvRsuXrHOzBdA3kjg740kka66geCu4',
+	'contacts': '1R4OuInyiWTArzNUiHen2xXgq6pwPhhhY5TTJD2BK0BQ',
+	'forum': '1Qo9EHd0_SCL2O17ffWzvfCrNAAB0_UZzppb9HwleBC8',
+	}
 
 @render_to("main/docs.html")
-def index(request):
-	return _get_doc('1V-yTMB6nFsXjE7LYjM9RbSETExPG0IrPnnYAayOQdEI')
+def index(request, page_name = 'main'):
+	return _get_doc(PAGES[page_name])
 
-
-@render_to("main/docs.html")
-def offer(request):
-	return _get_doc('1r1jdCGX6OIxOlmECXCYgQ3A_dqKH6oUhAxLZA6IKMr8')
-
-
-@render_to("main/docs.html")
-def acts(request, id = None):
-	if id:
-		id = int(id)
-	if id and len(ACTS)>= id:
-		return _get_doc(ACTS[id], False)
-	else:
-		return _get_doc('1N82DHbYJQVy7ZA3IRzgtjqZnxIb08vCH0HpGeyaiKKU')
-
-
-
-@render_to("main/contacts.html")
-def contacts(request):
-	result = _get_doc('1pjbpq1rRig1Nwmn7gwoyWH1lqBk1JkOp39xHcqY32KI')
+@render_to("main/forum.html")
+def forum(request):
+	result = _get_doc(PAGES['forum'])
 	if request.method == "POST":
 		form = feedback_form(request.POST)
 		if form.is_valid():
+			request.session['status_feedback'] = 'mn,mn'
 			mail.send_mail(sender=settings.ADMIN_EMAIL,
 			               to=settings.ADMIN_EMAIL,
 			               subject=form.cleaned_data['title'],
 			               body=form.cleaned_data['text'] + form.cleaned_data['email'])
-			return HttpResponseRedirect('/contacts')
+			return HttpResponseRedirect('/forum')
 	else:
 		initial_data = {}
 		if request.user:
 			user = request.user
 			initial_data = {
-				'company': user.company,
-				'address': user.address,
-				'phone': user.phone,
 				'fio': user.fio,
 				'email': user.email(),
 				}
 		form = feedback_form(initial=initial_data)
+
+	if 'status_feedback' in request.session:
+		form.sended = True
+		del(request.session['status_feedback'])
+	else:
+		form.sended = False
+
 	result['form'] = form
+
+	result['sended'] = True
 	return result
 
-
-@render_to("main/docs.html")
-def experience(request):
-	return _get_doc('19miGFML3p4KCgPWb_uUr12atBch5UoaZZ9KhPNOs3_o')
-
-
-@render_to("main/docs.html")
-def certification(request):
-	return _get_doc('1Uthw7v7VGbMRRYhYkdHoSIz76pTQuZJBhSuWR-yXXVE')
-
-
-@render_to("main/docs.html")
-def energy(request):
-	return _get_doc('1Yx0pbyKlCm6lBCoZ74OkESiz5UnWKsdzf3dryMqyA_8')
-
-
-@render_to("main/docs.html")
-def partners(request):
-	return _get_doc('1zmIpDSiHQa2_N-oYGhvGiv_tGQaECktvaAw3J4gIDhE')
-
-
-@render_to("main/license.html")
-def license(request):
-	return {}
-
-
-def _get_doc(id, use_cache = True):
+def _get_doc(id, use_cache=True):
 	if googleUser.is_current_user_admin():
 		memcache.delete(id)
-		
+
 	result = memcache.get(id)
 	if not result:
 		client = gdata.docs.client.DocsClient(source='yourCo-yourAppName-v1')
@@ -142,7 +104,7 @@ def _get_doc(id, use_cache = True):
 			keywords = html.body.div.find(text=re.compile("keywords = .*"))
 			description = html.body.div.find(text=re.compile("description = .*"))
 		title = html.head.title.text
-		
+
 		if head_title:
 			head_title = head_title.replace("title = ", '')
 		else:
@@ -157,15 +119,15 @@ def _get_doc(id, use_cache = True):
 		style = html.style.prettify()
 
 		result = {
-			'entry':entry,
+			'entry': entry,
 			'title': title,
-		  'html':html,
-			'body': body.replace('http:///','/'),
+			'html': html,
+			'body': body.replace('http:///', '/'),
 			'style': style,
 			'id': id,
 			'head_title': head_title,
-			'keywords':keywords,
-			'description':description,
+			'keywords': keywords,
+			'description': description,
 			}
 		if use_cache:
 			memcache.add(id, result)
