@@ -166,6 +166,8 @@ def _get_doc(id, use_cache=True):
 			description = description.replace("description = ", '')
 
 		[divs.extract() for divs in html.body.findAll('div')]
+		[span.replaceWith(span.renderContents()) for span in html.body.findAll('span')]
+
 		body = html.body.renderContents()
 		style = html.style.prettify()
 
