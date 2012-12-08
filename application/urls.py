@@ -13,6 +13,7 @@ urlpatterns = patterns("",
 	(r"^license$", "application.main.views.license"),
 	(r"^special_offer$", "application.main.views.special_offer"),
 	(r"^lab$", "application.main.views.lab"),
+	(r"^ohrana_truda$", "application.main.views.work_defense"),
 
 	(r"^acts/(\d.*)$", "application.main.views.acts"),
 

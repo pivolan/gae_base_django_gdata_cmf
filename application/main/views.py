@@ -121,6 +121,10 @@ def energy(request):
 def partners(request):
 	return _get_doc('1zmIpDSiHQa2_N-oYGhvGiv_tGQaECktvaAw3J4gIDhE')
 
+@render_to("main/docs.html")
+def work_defense(request):
+	return _get_doc('1tahKE3np0oZkFb0SZoGZGLqq2n53J0REHdG79ykDkO0')
+
 
 @render_to("main/license.html")
 def license(request):
